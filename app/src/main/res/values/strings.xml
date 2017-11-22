@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">NoteTakingApp</string>
+    <string name="create_sample_data">Create sample data</string>
+    <string name="delete_all_notes">Delete all notes</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="all_deleted">All notes deleted</string>
+    <string name="title_activity_editor">EditorActivity</string>
+    <string name="new_note">New note</string>
+    <string name="note_updated">Note updated</string>
+    <string name="action_delete">Delete</string>
+    <string name="note_deleted">Note deleted</string>
+    <string name="note">Note</string>
+    <string name="enter_note_here">Enter note here</string>
+    <string name="search_hint">Search note...</string>
+    <string name="Enter_note_name_here">Enter note name here</string>
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="exit">Exit</string>
+    <string name="save_data">Save data?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="header_title">Header</string>
+    <string name="openNote">Open</string>
+    <string name="pinNote">Pin</string>
+    <string name="enter_date_here">Enter date here</string>
+    <string name="open_calendar">Open calendar</string>
+</resources>

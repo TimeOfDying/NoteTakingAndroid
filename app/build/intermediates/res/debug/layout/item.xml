@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="7dp">
+
+    <ImageView
+        android:id="@+id/list_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:paddingTop="16dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="5dp"
+        android:src="@drawable/ic_document" />
+
+    <RelativeLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:orientation="vertical"
+        android:focusableInTouchMode="false"
+        android:descendantFocusability="blocksDescendants">
+
+        <TextView
+            android:id="@+id/noteID"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/noteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstNote"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:layout_toLeftOf="@+id/noteInFavourite"
+            android:layout_toStartOf="@+id/noteInFavourite" />
+
+        <TextView
+            android:id="@+id/noteDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/noteName"
+            android:layout_alignStart="@+id/noteName"
+            android:layout_below="@+id/noteName"
+            android:layout_toLeftOf="@+id/noteInFavourite"
+            android:layout_toStartOf="@+id/noteInFavourite"
+            android:maxLines="5"
+            android:paddingBottom="8dp"
+            android:text="FirstNote" />
+
+        <CheckBox
+            android:id="@+id/noteInFavourite"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/checkbox_selector"
+            android:checked="false"
+            android:clickable="false" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+<!-- From: file:/E:/Other/PlainOlNotes/app/src/main/res/layout/item.xml -->
