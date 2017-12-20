@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NoteTakingApp</string>
+    <string name="app_name">WhyNote</string>
     <string name="create_sample_data">Create sample data</string>
     <string name="delete_all_notes">Delete all notes</string>
     <string name="are_you_sure">Are you sure?</string>
@@ -10,8 +10,8 @@
     <string name="action_delete">Delete</string>
     <string name="note_deleted">Note deleted</string>
     <string name="note">Note</string>
-    <string name="enter_note_here">Enter note here</string>
-    <string name="search_hint">Search note...</string>
+    <string name="enter_note_here">Enter another info</string>
+    <string name="search_hint">Search note…</string>
     <string name="Enter_note_name_here">Enter note name here</string>
     <string name="speech_prompt">Say something&#8230;</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
@@ -26,4 +26,6 @@
     <string name="pinNote">Pin</string>
     <string name="enter_date_here">Enter date here</string>
     <string name="open_calendar">Open calendar</string>
+    <string name="choose_date">Choose date</string>
+    <string name="choose_category">Choose category</string>
 </resources>

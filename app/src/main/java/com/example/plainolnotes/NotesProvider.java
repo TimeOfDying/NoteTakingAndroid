@@ -14,7 +14,7 @@ public class NotesProvider extends ContentProvider{
     public static final Uri CONTENT_URI =
             Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH );
 
-    // Constant to identify the requested operation
+
     private static final int NOTES = 1;
     private static final int NOTES_ID = 2;
 

@@ -13,15 +13,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.text.format.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,11 +39,18 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     private EditText editorNoteName;
     private EditText editorNoteText;
     private EditText editorNoteDate;
-    private Button btnToCalendar;
+    private EditText editorNotePass;
+    private CheckBox passBtn;
     private String noteFilter;
     private String oldName;
     private String oldText;
+    private String oldDate;
+    private String oldPassword;
     private int pinned;
+    private int priority;
+    private Spinner spinner;
+    private String[] spinnerVariants = {" ", "1", "2", "3"};
+    private int spinnerPosition;
     private int day, month, year, hour, minute, dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
     NotesRepo notesRepo;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -54,10 +64,40 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
         editorNoteName = (EditText) findViewById(R.id.editNoteName);
         editorNoteText = (EditText) findViewById(R.id.editNoteText);
         editorNoteDate = (EditText) findViewById(R.id.editNoteDate);
-        btnToCalendar = (Button) findViewById(R.id.buttonToCalendar);
+        editorNotePass = (EditText) findViewById(R.id.EditNotePass);
+        passBtn = (CheckBox) findViewById(R.id.passBtn);
+        spinner = (Spinner) findViewById(R.id.spinnerPR);
+
+        editorNotePass.setVisibility(View.INVISIBLE);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerVariants);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+
+        passBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(passBtn.isChecked()){
+                    editorNotePass.setVisibility(View.VISIBLE);
+                }else{
+                    editorNotePass.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                spinnerPosition = position;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
 
 
-        btnToCalendar.setOnClickListener(new View.OnClickListener()
+        editorNoteDate.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -76,7 +116,6 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
         Uri uri = intent.getParcelableExtra(NotesProvider.CONTENT_ITEM_TYPE);
 
         if (uri == null) {
-
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.new_note));
         } else {
@@ -87,9 +126,20 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
             cursor.moveToFirst();
             oldName = cursor.getString(cursor.getColumnIndex(Note.NOTE_NAME));
             oldText = cursor.getString(cursor.getColumnIndex(Note.NOTE_DESCRIPTION));
+            oldDate = cursor.getString(cursor.getColumnIndex(Note.NOTE_DATE));
             pinned = cursor.getInt(cursor.getColumnIndex(Note.NOTE_IN_FAVOURITE));
+            priority = cursor.getInt(cursor.getColumnIndex(Note.NOTE_PRIORITY));
+            oldPassword = cursor.getString(cursor.getColumnIndex(Note.NOTE_PASSWORD));
             editorNoteText.setText(oldText);
             editorNoteName.setText(oldName);
+            editorNoteDate.setText(oldDate);
+            editorNotePass.setText(oldPassword);
+            if(priority == 4) {
+                spinner.setSelection(priority-4);
+            }
+            else {
+                spinner.setSelection(priority);
+            }
         }
     }
 
@@ -135,19 +185,12 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG_EXIT) {
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            // заголовок
             adb.setTitle(R.string.exit);
-            // сообщение
             adb.setMessage(R.string.save_data);
-            // иконка
-            adb.setIcon(android.R.drawable.ic_dialog_info);
-            // кнопка положительного ответа
+            adb.setIcon(R.drawable.alertdialogicon);
             adb.setPositiveButton(R.string.yes, myClickListener);
-            // кнопка отрицательного ответа
             adb.setNegativeButton(R.string.no, myClickListener);
-            // кнопка нейтрального ответа
             adb.setNeutralButton(R.string.cancel, myClickListener);
-            // создаем диалог
             return adb.create();
         }
         return super.onCreateDialog(id);
@@ -156,16 +199,13 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
-                // положительная кнопка
                 case Dialog.BUTTON_POSITIVE:
                     finishEditing();
                     finish();
                     break;
-                // негативная кнопка
                 case Dialog.BUTTON_NEGATIVE:
                     finish();
                     break;
-                // нейтральная кнопка
                 case Dialog.BUTTON_NEUTRAL:
                     break;
             }
@@ -214,22 +254,33 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     private void finishEditing() {
         String newText = editorNoteText.getText().toString().trim();
         String newName = editorNoteName.getText().toString().trim();
+        String newDate = editorNoteDate.getText().toString().trim();
+        String newPassword = editorNotePass.getText().toString().trim();
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         switch (action) {
             case Intent.ACTION_INSERT:
                 if (newText.length() == 0) {
                     setResult(RESULT_CANCELED);
                 } else {
-                    insertNote(newName, newText);
+                    insertNote(newName, newText, newDate, newPriority, newPassword);
                 }
                 break;
             case Intent.ACTION_EDIT:
                 if (newText.length() == 0 && newName.length() == 0) {
                     deleteNote();
-                } else if (oldText.equals(newText) && oldName.equals(newName)) {
+                } else if (oldText.equals(newText) && oldName.equals(newName) && oldDate.equals(newDate) && priority == newPriority
+                        && oldPassword.equals(newPassword)) {
                     setResult(RESULT_CANCELED);
                 } else {
-                    updateNote(newName, newText);
+                    updateNote(newName, newText, newDate, newPriority, newPassword);
                 }
 
         }
@@ -240,10 +291,23 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     {
         String newText = editorNoteText.getText().toString().trim();
         String newName = editorNoteName.getText().toString().trim();
+        String newDate = editorNoteDate.getText().toString().trim();
+        String newPassword = editorNotePass.getText().toString().trim();
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         ContentValues values = new ContentValues();
         values.put(Note.NOTE_NAME, newName);
         values.put(Note.NOTE_DESCRIPTION, newText);
+        values.put(Note.NOTE_DATE, newDate);
+        values.put(Note.NOTE_PRIORITY, newPriority);
+        values.put(Note.NOTE_PASSWORD, newPassword);
 
         if(pinned==1)
         {
@@ -263,19 +327,26 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
 
     }
 
-    private void updateNote(String noteName, String noteText) {
+    private void updateNote(String noteName, String noteText, String noteDate, int notePriority, String notePassword) {
         ContentValues values = new ContentValues();
         values.put(Note.NOTE_NAME, noteName);
         values.put(Note.NOTE_DESCRIPTION, noteText);
+        values.put(Note.NOTE_DATE, noteDate);
+        values.put(Note.NOTE_PRIORITY, notePriority);
+        values.put(Note.NOTE_PASSWORD, notePassword);
         getContentResolver().update(NotesProvider.CONTENT_URI, values, noteFilter, null);
         Toast.makeText(this, getString(R.string.note_updated), Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK);
     }
 
-    private void insertNote(String noteName, String noteText) {
+    private void insertNote(String noteName, String noteText, String noteDate, int notePriority, String notePassword) {
         Note note = new Note();
         note.noteNAME = noteName;
         note.noteDESCRIPTION = noteText;
+        note.noteDate = noteDate;
+        note.notePriority = notePriority;
+        note.noteCategory = "Blank";
+        note.NotePassword = notePassword;
         notesRepo.insert(note);
         setResult(RESULT_OK);
     }

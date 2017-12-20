@@ -46,12 +46,20 @@
                 android:value="com.example.plainolnotes.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.plainolnotes.CalendarActivity"
-            android:label="CalendarActivity"
-            android:parentActivityName="com.example.plainolnotes.EditorActivity" >
+            android:name="com.example.plainolnotes.MovieEditorActivity"
+            android:label="MovieEditorActivity"
+            android:parentActivityName="com.example.plainolnotes.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.plainolnotes.EditorActivity" />
+                android:value="com.example.plainolnotes.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.plainolnotes.ShoppingEditorActivity"
+            android:label="ShoppingEditorActivity"
+            android:parentActivityName="com.example.plainolnotes.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.plainolnotes.MainActivity" />
         </activity>
     </application>
 

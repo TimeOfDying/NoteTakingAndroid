@@ -1,0 +1,19 @@
+#Tue Dec 19 19:31:58 YEKT 2017
+renamed.5=classes3.dex
+renamed.4=classes.dex
+renamed.3=classes2.dex
+renamed.2=classes6.dex
+renamed.1=classes4.dex
+renamed.0=classes5.dex
+base.5=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_474b064ae0e69756b16c3d15ead699a633d6c9f6
+base.4=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_0f46245952a040cabaca30360770da7029ca9952
+base.3=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_42b14c8765c07177537e46ee9239d760d35b852b
+base.2=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-22.0.0_3f277a76ad0fa0b4472677170261ead73bb7ad35
+base.1=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_9b304f1d65922d7b1b4df0a17efcbe7a9ae84662
+base.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-22.0.0_a24542992425a7ddd05091ade7b6b6614939b788
+file.5=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_474b064ae0e69756b16c3d15ead699a633d6c9f6\\classes.dex
+file.4=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_0f46245952a040cabaca30360770da7029ca9952\\classes.dex
+file.3=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_42b14c8765c07177537e46ee9239d760d35b852b\\classes.dex
+file.2=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-22.0.0_3f277a76ad0fa0b4472677170261ead73bb7ad35\\classes.dex
+file.1=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\classes_9b304f1d65922d7b1b4df0a17efcbe7a9ae84662\\classes.dex
+file.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-22.0.0_a24542992425a7ddd05091ade7b6b6614939b788\\classes.dex

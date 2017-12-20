@@ -1,35 +1,25 @@
--injars 'E:\Other\PlainOlNotes\app\build\intermediates\multi-dex\debug\allclasses.jar'
+-injars 'E:\Other\PlainOlNotes\app\build\intermediates\transforms\jarMerging\debug\jars\1\1f\combined.jar'
 -outjars 'E:\Other\PlainOlNotes\app\build\intermediates\multi-dex\debug\componentClasses.jar'
 
--libraryjars 'C:\Users\Roman\AppData\Local\Android\sdk\build-tools\22.0.0\lib\shrinkedAndroid.jar'
+-libraryjars 'C:\Users\Roman\AppData\Local\Android\Sdk\build-tools\25.0.0\lib\shrinkedAndroid.jar'
 
 -forceprocessing
 -dontoptimize
 -dontobfuscate
+-dontusemixedcaseclassnames
 -dontpreverify
--dontwarn
+-dontnote **
+-dontwarn **
 -printconfiguration 'E:\Other\PlainOlNotes\app\build\intermediates\multi-dex\debug\components.flags'
 
 
--keep class com.example.plainolnotes.NoteTakingApp {
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
     <init>();
     void attachBaseContext(android.content.Context);
-}
-
--keep class com.example.plainolnotes.MainActivity {
-    <init>();
-}
-
--keep class com.example.plainolnotes.NotesProvider {
-    <init>();
-}
-
--keep class com.example.plainolnotes.EditorActivity {
-    <init>();
-}
-
--keep class com.example.plainolnotes.CalendarActivity {
-    <init>();
 }
 
 -keep public class * extends android.app.backup.BackupAgent {
@@ -37,6 +27,11 @@
 }
 
 -keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.fd.** {
     <fields>;
     <methods>;
 }

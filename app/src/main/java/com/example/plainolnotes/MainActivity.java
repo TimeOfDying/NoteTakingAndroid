@@ -13,11 +13,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -28,7 +32,9 @@ public class MainActivity extends ActionBarActivity
     private Cursor cursor;
     ListView listView;
     NotesRepo notesRepo;
+    private static String selectedCategory = null;
     private final static String TAG = MainActivity.class.getName().toString();
+    private String[] spinnerVariants = {"New note...", "Movies", "Shopping"};
 
 
     @Override
@@ -45,14 +51,81 @@ public class MainActivity extends ActionBarActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, EditorActivity.class);
-                Uri uri = Uri.parse(NotesProvider.CONTENT_URI + "/" + id);
-                intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
-                startActivityForResult(intent, EDITOR_REQUEST_CODE);
+
+                final Uri uri = Uri.parse(NotesProvider.CONTENT_URI + "/" + id);
+                String noteFilter = Note.NOTE_ID + "=" + uri.getLastPathSegment();
+                Cursor cursor = getContentResolver().query(uri,
+                        DBOpenHelper.ALL_COLUMNS, noteFilter, null, null);
+                cursor.moveToFirst();
+                final String checkCategory = cursor.getString(cursor.getColumnIndex(Note.NOTE_CATEGORY));
+                final String checkPassword = cursor.getString(cursor.getColumnIndex(Note.NOTE_PASSWORD));
+
+                if(checkPassword.length()>0) {
+                    LayoutInflater layoutInflaterAndroid = LayoutInflater.from(MainActivity.this);
+                    View mView = layoutInflaterAndroid.inflate(R.layout.pass_input_dialog, null);
+                    AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(MainActivity.this);
+                    alertDialogBuilderUserInput.setView(mView);
+
+                    final EditText passwordField = (EditText) mView.findViewById(R.id.userInputDialog);
+                    alertDialogBuilderUserInput
+                            .setCancelable(false)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogBox, int id) {
+                                    if(passwordField.getText().toString().equals(checkPassword))
+                                    {
+                                        if (checkCategory.equals("Movies")) {
+                                            Intent intent = new Intent(MainActivity.this, MovieEditorActivity.class);
+                                            intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                                            startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                                        } else if (checkCategory.equals("Shopping")) {
+                                            Intent intent = new Intent(MainActivity.this, ShoppingEditorActivity.class);
+                                            intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                                            startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                                        } else {
+                                            Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+                                            intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                                            startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                                        }
+                                    }
+                                    else Toast.makeText(MainActivity.this,
+                                            "Incorrect password",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                            })
+
+                            .setNegativeButton("Cancel",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialogBox, int id) {
+                                            dialogBox.cancel();
+                                        }
+                                    });
+
+                    AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                    alertDialogAndroid.show();
+
+                }
+                else
+                {
+                    if (checkCategory.equals("Movies")) {
+                        Intent intent = new Intent(MainActivity.this, MovieEditorActivity.class);
+                        intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                        startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    } else if (checkCategory.equals("Shopping")) {
+                        Intent intent = new Intent(MainActivity.this, ShoppingEditorActivity.class);
+                        intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                        startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, EditorActivity.class);
+                        intent.putExtra(NotesProvider.CONTENT_ITEM_TYPE, uri);
+                        startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    }
+                }
+
             }
         });
 
-        if (cursor == null) insertDummy();
+        //if (cursor == null) insertDummy();
         cursor = notesRepo.getNotestList();
         notesCursorAdapter.swapCursor(cursor);
 
@@ -63,22 +136,20 @@ public class MainActivity extends ActionBarActivity
     private void insertDummy() {
         Note note = new Note();
 
-        note.noteNAME = "FirstNote";
-        note.noteDESCRIPTION = "tanwoonhow@intstinctcoder.com";
-        note.noteInFavourite = 1;
+        note.noteCategory = "Standard";
+        note.noteNAME = "dummy";
         notesRepo.insert(note);
 
-        notesRepo = new NotesRepo(this);
-        note.noteNAME = "SecondNote";
-        note.noteDESCRIPTION = "Jimmy Tan Yao Lin";
-        note.noteInFavourite = 0;
+        note.noteCategory = "Shopping";
+        note.noteNAME = "dummy";
         notesRepo.insert(note);
 
-        notesRepo = new NotesRepo(this);
-        note.noteNAME = "ThordNote";
-        note.noteDESCRIPTION = "Robert Pattinson";
-        note.noteInFavourite = 1;
+        note.noteCategory = "Movies";
+        note.noteNAME = "dummy";
         notesRepo.insert(note);
+
+        cursor = notesRepo.getNotestList();
+        notesCursorAdapter.swapCursor(cursor);
 
     }
 
@@ -130,8 +201,52 @@ public class MainActivity extends ActionBarActivity
     }
 
     public void openEditorForNewNote(View view) {
-        Intent intent = new Intent(this, EditorActivity.class);
-        startActivityForResult(intent, EDITOR_REQUEST_CODE);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        View mview = getLayoutInflater().inflate(R.layout.spinner_dialog, null);
+        mBuilder.setTitle("Choose note template");
+        final Spinner mSpinner = (Spinner) mview.findViewById(R.id.DGspinner);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, spinnerVariants);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(spinnerAdapter);
+
+        mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                if(mSpinner.getSelectedItem().toString().equalsIgnoreCase("Movies"))
+                {
+                    Intent intent = new Intent(MainActivity.this, MovieEditorActivity.class);
+                    startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    dialogInterface.dismiss();
+                }
+                else if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Shopping"))
+                {
+                    Intent intent = new Intent(MainActivity.this,ShoppingEditorActivity.class);
+                    startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    dialogInterface.dismiss();
+                }
+                else
+                {
+                    Intent intent = new Intent(MainActivity.this,EditorActivity.class);
+                    startActivityForResult(intent, EDITOR_REQUEST_CODE);
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+
+        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setView(mview);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+
+
     }
 
     @Override
@@ -150,19 +265,54 @@ public class MainActivity extends ActionBarActivity
             case R.id.action_delete_all:
                 deleteAllNotes();
                 break;
+            case R.id.action_choose_category:
+                filterNotesByCategory();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void deleteAllNotes() {
+    private void filterNotesByCategory() {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        View mview = getLayoutInflater().inflate(R.layout.spinner_dialog, null);
+        mBuilder.setTitle("Choose category");
+        final Spinner mSpinner = (Spinner) mview.findViewById(R.id.DGspinner);
+        String[] spinnerVariants2 = notesRepo.getCategoriesList();
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, spinnerVariants2);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(spinnerAdapter);
 
+        mBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                String category = mSpinner.getSelectedItem().toString();
+                cursor = notesRepo.getNotesListByCategory(category);
+                notesCursorAdapter.swapCursor(cursor);
+            }
+        });
+
+        mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        mBuilder.setView(mview);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+
+    }
+
+    private void deleteAllNotes() {
         DialogInterface.OnClickListener dialogClickListener =
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int button) {
                         if (button == DialogInterface.BUTTON_POSITIVE) {
-                            //Insert Data management code here
                             getContentResolver().delete(
                                     NotesProvider.CONTENT_URI, null, null
                             );

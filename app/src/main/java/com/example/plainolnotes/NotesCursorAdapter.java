@@ -2,16 +2,20 @@ package com.example.plainolnotes;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NotesCursorAdapter extends CursorAdapter{
-    TextView noteID, noteName,noteDescription;
+    TextView noteID, noteName,noteDescription,noteDate;
     CheckBox noteInFavourite;
+    ImageView notePriority;
+    ImageView passImg;
     private LayoutInflater mInflater;
 
     public NotesCursorAdapter(Context context, Cursor c, int flags) {
@@ -27,6 +31,10 @@ public class NotesCursorAdapter extends CursorAdapter{
         holder.noteName = (TextView) view.findViewById(R.id.noteName);
         holder.noteDescription = (TextView) view.findViewById(R.id.noteDescription);
         holder.noteInFavourite = (CheckBox) view.findViewById(R.id.noteInFavourite);
+        holder.noteDate = (TextView) view.findViewById(R.id.noteDate);
+        holder.notePriority = (ImageView) view.findViewById(R.id.notePriority);
+        holder.notePass = (ImageView) view.findViewById(R.id.passImg);
+
         view.setTag(holder);
         return view;
 
@@ -39,6 +47,8 @@ public class NotesCursorAdapter extends CursorAdapter{
         holder.noteID.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_ID)));
         holder.noteName.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_NAME)));
         holder.noteDescription.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_DESCRIPTION)));
+        holder.noteDate.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_DATE)));
+
 
         int IsChecked = cursor.getInt(cursor.getColumnIndex(Note.NOTE_IN_FAVOURITE));
         if (IsChecked == 1) {
@@ -48,12 +58,43 @@ public class NotesCursorAdapter extends CursorAdapter{
         {
             holder.noteInFavourite.setChecked(false);
         }
+
+        int Priority = cursor.getInt(cursor.getColumnIndex(Note.NOTE_PRIORITY));
+        if (Priority == 1)
+        {
+            holder.notePriority.setBackgroundColor(Color.parseColor("#ff000c"));
+        }
+        else if (Priority == 2)
+        {
+            holder.notePriority.setBackgroundColor(Color.parseColor("#ff7400"));
+        }
+        else if (Priority == 3)
+        {
+            holder.notePriority.setBackgroundColor(Color.parseColor("#fff400"));
+        }
+        else
+        {
+            holder.notePriority.setVisibility(View.INVISIBLE);
+        }
+
+        String password = cursor.getString(cursor.getColumnIndex(Note.NOTE_PASSWORD));
+        if (password.length()>0)
+        {
+            holder.notePass.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            holder.notePass.setVisibility(View.INVISIBLE);
+        }
     }
 
     static class ViewHolder {
         TextView noteID;
         TextView noteName;
         TextView noteDescription;
+        TextView noteDate;
         CheckBox noteInFavourite;
+        ImageView notePriority;
+        ImageView notePass;
     }
 }
