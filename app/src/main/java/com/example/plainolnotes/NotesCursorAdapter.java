@@ -12,10 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NotesCursorAdapter extends CursorAdapter{
-    TextView noteID, noteName,noteDescription,noteDate;
-    CheckBox noteInFavourite;
-    ImageView notePriority;
-    ImageView passImg;
     private LayoutInflater mInflater;
 
     public NotesCursorAdapter(Context context, Cursor c, int flags) {
@@ -27,7 +23,6 @@ public class NotesCursorAdapter extends CursorAdapter{
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         View view = mInflater.inflate(R.layout.item, parent, false);
         ViewHolder holder = new ViewHolder();
-        holder.noteID = (TextView) view.findViewById(R.id.noteID);
         holder.noteName = (TextView) view.findViewById(R.id.noteName);
         holder.noteDescription = (TextView) view.findViewById(R.id.noteDescription);
         holder.noteInFavourite = (CheckBox) view.findViewById(R.id.noteInFavourite);
@@ -44,7 +39,6 @@ public class NotesCursorAdapter extends CursorAdapter{
     public void bindView(View view, Context context, Cursor cursor) {
 
         ViewHolder holder  =  (ViewHolder) view.getTag();
-        holder.noteID.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_ID)));
         holder.noteName.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_NAME)));
         holder.noteDescription.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_DESCRIPTION)));
         holder.noteDate.setText(cursor.getString(cursor.getColumnIndex(Note.NOTE_DATE)));
@@ -62,17 +56,20 @@ public class NotesCursorAdapter extends CursorAdapter{
         int Priority = cursor.getInt(cursor.getColumnIndex(Note.NOTE_PRIORITY));
         if (Priority == 1)
         {
-            holder.notePriority.setBackgroundColor(Color.parseColor("#ff000c"));
+            holder.notePriority.setVisibility(View.VISIBLE);
+            holder.notePriority.setImageResource(R.drawable.flag_red);
         }
         else if (Priority == 2)
         {
-            holder.notePriority.setBackgroundColor(Color.parseColor("#ff7400"));
+            holder.notePriority.setVisibility(View.VISIBLE);
+            holder.notePriority.setImageResource(R.drawable.flag_yellow);
         }
         else if (Priority == 3)
         {
-            holder.notePriority.setBackgroundColor(Color.parseColor("#fff400"));
+            holder.notePriority.setVisibility(View.VISIBLE);
+            holder.notePriority.setImageResource(R.drawable.flag_green);
         }
-        else
+        else if (Priority == 4)
         {
             holder.notePriority.setVisibility(View.INVISIBLE);
         }
@@ -81,15 +78,16 @@ public class NotesCursorAdapter extends CursorAdapter{
         if (password.length()>0)
         {
             holder.notePass.setVisibility(View.VISIBLE);
+            holder.noteDescription.setVisibility(View.INVISIBLE);
         }
         else
         {
             holder.notePass.setVisibility(View.INVISIBLE);
+            holder.noteDescription.setVisibility(View.VISIBLE);
         }
     }
 
     static class ViewHolder {
-        TextView noteID;
         TextView noteName;
         TextView noteDescription;
         TextView noteDate;

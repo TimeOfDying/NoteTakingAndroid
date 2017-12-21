@@ -10,7 +10,7 @@
 
 
     <EditText
-        android:id="@+id/editNoteText"
+        android:id="@+id/editNoteMovieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -132,7 +132,7 @@
         android:src="@drawable/movietemplate" />
 
     <EditText
-        android:id="@+id/editNoteMovieName"
+        android:id="@+id/editNoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -147,8 +147,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editNoteMovieName"
-        android:layout_alignStart="@+id/editNoteMovieName"
+        android:layout_alignLeft="@+id/editNoteText"
+        android:layout_alignStart="@+id/editNoteText"
         android:layout_alignTop="@+id/textView2"
         android:text="Movie name"
         android:textStyle="bold" />

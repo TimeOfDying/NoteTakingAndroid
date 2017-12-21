@@ -14,8 +14,9 @@ public class Note {
     public static final String NOTE_PRIORITY = "notePriority";
     public static final String NOTE_CATEGORY = "noteCategory";
     public static final String NOTE_PLACE = "notePlace";
-    public static final String NOTE_MOVIE_NAME = "noteMovieName";
+    public static final String NOTE_ADDITIONAL_INFO = "noteAdditionalInfo";
     public static final String NOTE_PASSWORD = "notePassword";
+
 
     public int noteID;
     public String noteNAME;
@@ -26,6 +27,6 @@ public class Note {
     public int notePriority;
     public String noteCategory;
     public String notePlace;
-    public String noteMovieName;
-    public String NotePassword;
+    public String noteAdditionalInfo;
+    public String notePassword;
 }

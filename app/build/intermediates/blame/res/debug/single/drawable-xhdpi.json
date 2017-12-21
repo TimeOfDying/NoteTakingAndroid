@@ -44,12 +44,12 @@
         "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable-xhdpi\\ic_pin_black_18dp.png"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_pin_black_24dp.png",
-        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable-xhdpi\\ic_pin_black_24dp.png"
-    },
-    {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_lock.png",
         "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable-xhdpi\\ic_lock.png"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_pin_black_24dp.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable-xhdpi\\ic_pin_black_24dp.png"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_pin_black_36dp.png",

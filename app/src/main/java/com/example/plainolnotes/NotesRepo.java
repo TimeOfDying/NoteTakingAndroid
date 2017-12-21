@@ -29,15 +29,14 @@ public class NotesRepo {
         values.put(Note.NOTE_PRIORITY, note.notePriority);
         values.put(Note.NOTE_CATEGORY, note.noteCategory);
         values.put(Note.NOTE_PLACE, note.notePlace);
-        values.put(Note.NOTE_MOVIE_NAME, note.noteMovieName);
-        values.put(Note.NOTE_PASSWORD, note.NotePassword);
+        values.put(Note.NOTE_ADDITIONAL_INFO, note.noteAdditionalInfo);
+        values.put(Note.NOTE_PASSWORD, note.notePassword);
 
 
         long note_Id = db.insert(Note.TABLE_NOTES, null, values);
         db.close();
         return (int) note_Id;
     }
-
 
     public Cursor getNotestList()
     {
@@ -53,7 +52,7 @@ public class NotesRepo {
                 Note.NOTE_CATEGORY + ", " +
                 Note.NOTE_PLACE + ", " +
                 Note.NOTE_PASSWORD + ", " +
-                Note.NOTE_MOVIE_NAME + ", " +
+                Note.NOTE_ADDITIONAL_INFO + ", " +
                 Note.NOTE_DATE +
                 " FROM " + Note.TABLE_NOTES +
                 " WHERE " + Note.NOTE_NAME +"<>'dummy'" +
@@ -106,7 +105,7 @@ public class NotesRepo {
                 Note.NOTE_CATEGORY + ", " +
                 Note.NOTE_PLACE + ", " +
                 Note.NOTE_PASSWORD + ", " +
-                Note.NOTE_MOVIE_NAME + ", " +
+                Note.NOTE_ADDITIONAL_INFO + ", " +
                 Note.NOTE_DATE +
                 " FROM " + Note.TABLE_NOTES +
                 " WHERE " + Note.NOTE_CATEGORY + " LIKE '%" + category + "%'" +
@@ -123,6 +122,7 @@ public class NotesRepo {
         return cursor;
     }
 
+
     public Cursor getNotesListByKeyword(String search)
     {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -137,7 +137,7 @@ public class NotesRepo {
                 Note.NOTE_CATEGORY + ", " +
                 Note.NOTE_PLACE + ", " +
                 Note.NOTE_PASSWORD + ", " +
-                Note.NOTE_MOVIE_NAME + ", " +
+                Note.NOTE_ADDITIONAL_INFO + ", " +
                 Note.NOTE_DATE +
                 " FROM " + Note.TABLE_NOTES +
                 " WHERE " + Note.NOTE_DESCRIPTION + " LIKE '%" + search + "%' OR " + Note.NOTE_NAME + " LIKE '%" +search + "%'" +
@@ -169,7 +169,7 @@ public class NotesRepo {
                 Note.NOTE_CATEGORY + ", " +
                 Note.NOTE_PLACE + ", " +
                 Note.NOTE_PASSWORD + ", " +
-                Note.NOTE_MOVIE_NAME + ", " +
+                Note.NOTE_ADDITIONAL_INFO + ", " +
                 Note.NOTE_DATE +
                 " FROM " + Note.TABLE_NOTES
                 + " WHERE " +
@@ -191,8 +191,8 @@ public class NotesRepo {
                 note.notePriority = cursor.getInt(cursor.getColumnIndex(note.NOTE_PRIORITY));
                 note.noteCategory = cursor.getString(cursor.getColumnIndex(note.NOTE_CATEGORY));
                 note.notePlace = cursor.getString(cursor.getColumnIndex(note.NOTE_PLACE));
-                note.noteMovieName = cursor.getString(cursor.getColumnIndex(note.NOTE_MOVIE_NAME));
-                note.NotePassword = cursor.getString(cursor.getColumnIndex(note.NOTE_PASSWORD));
+                note.noteAdditionalInfo = cursor.getString(cursor.getColumnIndex(note.NOTE_ADDITIONAL_INFO));
+                note.notePassword = cursor.getString(cursor.getColumnIndex(note.NOTE_PASSWORD));
             } while (cursor.moveToNext());
         }
 

@@ -20,52 +20,38 @@
 
         <ImageView
             android:id="@+id/notePriority"
-            android:layout_width="wrap_content"
+            android:layout_width="25dp"
             android:layout_height="54dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="4dp"
-            android:layout_toEndOf="@+id/noteID"
-            android:layout_toLeftOf="@+id/noteDescription"
-            android:layout_toRightOf="@+id/noteID"
-            android:background="@color/accent" />
-
-        <TextView
-            android:id="@+id/noteID"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="1"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone" />
+            android:layout_above="@+id/noteDate"
+            android:layout_alignTop="@+id/noteName"
+            android:layout_toLeftOf="@+id/passImg"
+            android:src="@drawable/flag_red"/>
 
         <TextView
             android:id="@+id/noteName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/noteInFavourite"
-            android:layout_toStartOf="@+id/noteInFavourite"
             android:maxLines="1"
             android:paddingBottom="5dp"
             android:text="FirstNote"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_below="@+id/noteID"
+            android:layout_toLeftOf="@+id/notePriority"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/noteDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/noteName"
-            android:layout_alignStart="@+id/noteName"
             android:layout_below="@+id/noteName"
             android:layout_toLeftOf="@+id/noteDate"
-            android:layout_toStartOf="@+id/noteDate"
             android:maxLines="1"
             android:paddingTop="8dp"
-            android:text="FirstNote" />
+            android:text="FirstNote"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <CheckBox
             android:id="@+id/noteInFavourite"

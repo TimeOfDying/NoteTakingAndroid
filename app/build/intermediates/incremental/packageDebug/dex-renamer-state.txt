@@ -1,7 +1,4 @@
-#Wed Dec 20 17:01:31 YEKT 2017
-base.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_2e0ef35a9af5cd50a343d4705ba6202f49552431
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_02ab4eb4b5e3c172484b528e4b28f95127d029f5\\classes.dex
-base.1=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_02ab4eb4b5e3c172484b528e4b28f95127d029f5
-file.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_2e0ef35a9af5cd50a343d4705ba6202f49552431\\classes.dex
+#Thu Dec 21 09:01:15 YEKT 2017
+base.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=E\:\\Other\\PlainOlNotes\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

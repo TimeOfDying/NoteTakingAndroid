@@ -19,12 +19,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +44,9 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
     private EditText editorNoteText;
     private EditText editorNoteDate;
     private EditText editorNotePass;
+    private Button showInfoBtn;
+    private TextView dateTxt;
+    private TextView priorityTxt;
     private CheckBox passBtn;
     private String noteFilter;
     private String oldName;
@@ -65,13 +72,51 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
         editorNoteText = (EditText) findViewById(R.id.editNoteText);
         editorNoteDate = (EditText) findViewById(R.id.editNoteDate);
         editorNotePass = (EditText) findViewById(R.id.EditNotePass);
+        dateTxt = (TextView) findViewById(R.id.DateTxt);
+        priorityTxt = (TextView) findViewById(R.id.PriorityTxt);
         passBtn = (CheckBox) findViewById(R.id.passBtn);
         spinner = (Spinner) findViewById(R.id.spinnerPR);
-
+        showInfoBtn = (Button) findViewById(R.id.showAdditionBtn);
+        showInfoBtn.setBackgroundResource(R.drawable.download);
         editorNotePass.setVisibility(View.INVISIBLE);
+        editorNoteDate.setVisibility(View.INVISIBLE);
+        dateTxt.setVisibility(View.INVISIBLE);
+        priorityTxt.setVisibility(View.INVISIBLE);
+        passBtn.setVisibility(View.INVISIBLE);
+        spinner.setVisibility(View.INVISIBLE);
+
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerVariants);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
+
+        showInfoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editorNoteDate.isShown() == true) {
+                    editorNoteDate.setVisibility(View.INVISIBLE);
+                    editorNotePass.setVisibility(View.INVISIBLE);
+                    dateTxt.setVisibility(View.INVISIBLE);
+                    priorityTxt.setVisibility(View.INVISIBLE);
+                    passBtn.setVisibility(View.INVISIBLE);
+                    spinner.setVisibility(View.INVISIBLE);
+                    showInfoBtn.setBackgroundResource(R.drawable.upward);
+
+                }
+                else
+                {
+                    editorNoteDate.setVisibility(View.VISIBLE);
+                    if(passBtn.isChecked() == true) {
+                        editorNotePass.setVisibility(View.VISIBLE);
+                    }
+                    dateTxt.setVisibility(View.VISIBLE);
+                    priorityTxt.setVisibility(View.VISIBLE);
+                    passBtn.setVisibility(View.VISIBLE);
+                    spinner.setVisibility(View.VISIBLE);
+                    showInfoBtn.setBackgroundResource(R.drawable.download);
+                }
+
+            }
+        });
 
         passBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -119,6 +164,7 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.new_note));
         } else {
+            setTitle("Updating note");
             action = Intent.ACTION_EDIT;
             noteFilter = Note.NOTE_ID + "=" + uri.getLastPathSegment();
             Cursor cursor = getContentResolver().query(uri,
@@ -267,7 +313,7 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
 
         switch (action) {
             case Intent.ACTION_INSERT:
-                if (newText.length() == 0) {
+                if (newText.length() == 0 && newName.length() == 0) {
                     setResult(RESULT_CANCELED);
                 } else {
                     insertNote(newName, newText, newDate, newPriority, newPassword);
@@ -346,7 +392,7 @@ implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListene
         note.noteDate = noteDate;
         note.notePriority = notePriority;
         note.noteCategory = "Blank";
-        note.NotePassword = notePassword;
+        note.notePassword = notePassword;
         notesRepo.insert(note);
         setResult(RESULT_OK);
     }

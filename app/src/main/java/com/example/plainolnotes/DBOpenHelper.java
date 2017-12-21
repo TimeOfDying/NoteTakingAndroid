@@ -12,7 +12,8 @@ public class DBOpenHelper extends SQLiteOpenHelper{
 
     public static final String[] ALL_COLUMNS =
             {Note.NOTE_ID, Note.NOTE_NAME, Note.NOTE_DESCRIPTION, Note.NOTE_CREATED, Note.NOTE_IN_FAVOURITE,
-                    Note.NOTE_DATE, Note.NOTE_PRIORITY, Note.NOTE_CATEGORY, Note.NOTE_PLACE, Note.NOTE_MOVIE_NAME, Note.NOTE_PASSWORD};
+                    Note.NOTE_DATE, Note.NOTE_PRIORITY, Note.NOTE_CATEGORY, Note.NOTE_PLACE, Note.NOTE_ADDITIONAL_INFO,
+                    Note.NOTE_PASSWORD};
 
     private static final String TABLE_CREATE =
             "CREATE TABLE " + Note.TABLE_NOTES + " (" +
@@ -24,7 +25,7 @@ public class DBOpenHelper extends SQLiteOpenHelper{
                     Note.NOTE_PRIORITY + " INTEGER DEFAULT 0, " +
                     Note.NOTE_CATEGORY + " TEXT, " +
                     Note.NOTE_PLACE + " TEXT, " +
-                    Note.NOTE_MOVIE_NAME + " TEXT, " +
+                    Note.NOTE_ADDITIONAL_INFO + " TEXT, " +
                     Note.NOTE_PASSWORD + " TEXT, " +
                     Note.NOTE_DATE + " TEXT" +
                     ")";

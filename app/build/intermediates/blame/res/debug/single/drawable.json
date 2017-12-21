@@ -1,15 +1,63 @@
 [
     {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\download.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\download.png"
+    },
+    {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\flag_red.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\flag_red.png"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notepad.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\notepad.png"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\alertdialogicon.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\alertdialogicon.png"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\checkbox_selector.xml",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\checkbox_selector.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\upward.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\upward.png"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\flag_green.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\flag_green.png"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_cab_background_internal_bg.xml"
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\homework.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\homework.png"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
@@ -24,12 +72,12 @@
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\movies.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\movies.png"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_ratingbar_full_material.xml"
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\movietemplate.png",
@@ -44,12 +92,8 @@
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\checkbox_selector.xml",
-        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\checkbox_selector.xml"
-    },
-    {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_tab_indicator_material.xml"
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\flag_yellow.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\flag_yellow.png"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
@@ -64,16 +108,12 @@
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_item_background_holo_light.xml"
-    },
-    {
-        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
-        "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
-    },
-    {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
         "source": "C:\\Users\\Roman\\.android\\build-cache\\d3b9dcdd192404c0e668bcab0053241f7172a42d\\output\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\shopping.png",
+        "source": "E:\\Other\\PlainOlNotes\\app\\src\\main\\res\\drawable\\shopping.png"
     },
     {
         "merged": "E:\\Other\\PlainOlNotes\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",

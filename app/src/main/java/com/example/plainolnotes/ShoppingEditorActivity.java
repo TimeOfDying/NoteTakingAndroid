@@ -45,7 +45,7 @@ public class ShoppingEditorActivity extends ActionBarActivity
     private int pinned;
     private int priority;
     private Spinner spinner;
-    private String[] spinnerVariants = {"1", "2", "3"};
+    private String[] spinnerVariants = {" ", "1", "2", "3"};
     private int spinnerPosition;
     private int day, month, year, hour, minute, dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
     NotesRepo notesRepo;
@@ -69,7 +69,7 @@ public class ShoppingEditorActivity extends ActionBarActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                spinnerPosition = position+1;
+                spinnerPosition = position;
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -99,6 +99,7 @@ public class ShoppingEditorActivity extends ActionBarActivity
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.new_note));
         } else {
+            setTitle("Updating note");
             action = Intent.ACTION_EDIT;
             noteFilter = Note.NOTE_ID + "=" + uri.getLastPathSegment();
             Cursor cursor = getContentResolver().query(uri,
@@ -112,7 +113,12 @@ public class ShoppingEditorActivity extends ActionBarActivity
             editorNoteText.setText(oldText);
             editorNoteName.setText(oldName);
             editorNoteDate.setText(oldDate);
-            spinner.setSelection(priority-1);
+            if(priority == 4) {
+                spinner.setSelection(priority-4);
+            }
+            else {
+                spinner.setSelection(priority);
+            }
         }
     }
 
@@ -228,7 +234,14 @@ public class ShoppingEditorActivity extends ActionBarActivity
         String newText = editorNoteText.getText().toString().trim();
         String newName = editorNoteName.getText().toString().trim();
         String newDate = editorNoteDate.getText().toString().trim();
-        int newPriority = spinnerPosition;
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         switch (action) {
             case Intent.ACTION_INSERT:
@@ -256,8 +269,14 @@ public class ShoppingEditorActivity extends ActionBarActivity
         String newText = editorNoteText.getText().toString().trim();
         String newName = editorNoteName.getText().toString().trim();
         String newDate = editorNoteDate.getText().toString().trim();
-
-        int newPriority = spinnerPosition;
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         ContentValues values = new ContentValues();
         values.put(Note.NOTE_NAME, newName);
@@ -303,7 +322,7 @@ public class ShoppingEditorActivity extends ActionBarActivity
         note.noteDate = noteDate;
         note.notePriority = notePriority;
         note.noteCategory = "Shopping";
-        note.NotePassword = "";
+        note.notePassword = "";
         notesRepo.insert(note);
         setResult(RESULT_OK);
     }

@@ -18,12 +18,13 @@ ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:5:5-58:19
 MERGED from [com.android.support:appcompat-v7:22.0.0] C:\Users\Roman\.android\build-cache\d3b9dcdd192404c0e668bcab0053241f7172a42d\output\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:22.0.0] C:\Users\Roman\.android\build-cache\51351c90a02d7ec3e547ba8fabf1eff5c74173c9\output\AndroidManifest.xml:22:5-20
 MERGED from [com.github.markushi:circlebutton:1.1] C:\Users\Roman\.android\build-cache\45ff1e29c226852cce7ea950ca46ddf0c5423995\output\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Roman\.android\build-cache\a6bbd5a6a8b08c20ebfe8f4b2ec068c7abb43a82\output\AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:9:9-41
 	android:allowBackup
 		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:7:9-35
 	android:icon
-		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:8:9-43
+		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:8:9-41
 	android:theme
 		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:10:9-40
 	android:name
@@ -98,10 +99,11 @@ ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:50:9-57:20
 		ADDED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml:51:13-51
 uses-sdk
 INJECTED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:multidex:1.0.1] C:\Users\Roman\.android\build-cache\24e64455acee10604caa2bddf369081c7b3d27e3\output\AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:appcompat-v7:22.0.0] C:\Users\Roman\.android\build-cache\d3b9dcdd192404c0e668bcab0053241f7172a42d\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:22.0.0] C:\Users\Roman\.android\build-cache\51351c90a02d7ec3e547ba8fabf1eff5c74173c9\output\AndroidManifest.xml:20:5-43
 MERGED from [com.github.markushi:circlebutton:1.1] C:\Users\Roman\.android\build-cache\45ff1e29c226852cce7ea950ca46ddf0c5423995\output\AndroidManifest.xml:7:5-44
-MERGED from [com.android.support:multidex:1.0.1] C:\Users\Roman\.android\build-cache\24e64455acee10604caa2bddf369081c7b3d27e3\output\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Roman\.android\build-cache\a6bbd5a6a8b08c20ebfe8f4b2ec068c7abb43a82\output\AndroidManifest.xml:5:5-7:41
 	android:targetSdkVersion
 		INJECTED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml
 		INJECTED from E:\Other\PlainOlNotes\app\src\main\AndroidManifest.xml

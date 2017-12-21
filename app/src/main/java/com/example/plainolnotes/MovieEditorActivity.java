@@ -45,11 +45,11 @@ public class MovieEditorActivity extends ActionBarActivity
     private String oldText;
     private String oldDate;
     private String oldPlace;
-    private String oldMovieName;
+    private String oldAdditionalInfo;
     private int pinned;
     private int priority;
     private Spinner spinner;
-    private String[] spinnerVariants = {"1", "2", "3"};
+    private String[] spinnerVariants = {" ", "1", "2", "3"};
     private int spinnerPosition;
     private int day, month, year, hour, minute, dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
     NotesRepo notesRepo;
@@ -62,10 +62,10 @@ public class MovieEditorActivity extends ActionBarActivity
 
         notesRepo = new NotesRepo(this);
         editorNoteName = (EditText) findViewById(R.id.editNoteName);
-        editorNoteText = (EditText) findViewById(R.id.editNoteText);
+        editorNoteText = (EditText) findViewById(R.id.editNoteMovieName);
         editorNoteDate = (EditText) findViewById(R.id.editNoteDate);
         editorNotePlace = (EditText) findViewById(R.id.editNotePlace);
-        editorNoteMovieName = (EditText) findViewById(R.id.editNoteMovieName);
+        editorNoteMovieName = (EditText) findViewById(R.id.editNoteText);
         spinner = (Spinner) findViewById(R.id.spinnerPR);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerVariants);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -75,7 +75,7 @@ public class MovieEditorActivity extends ActionBarActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                spinnerPosition = position+1;
+                spinnerPosition = position;
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -105,6 +105,7 @@ public class MovieEditorActivity extends ActionBarActivity
             action = Intent.ACTION_INSERT;
             setTitle(getString(R.string.new_note));
         } else {
+            setTitle("Updating note");
             action = Intent.ACTION_EDIT;
             noteFilter = Note.NOTE_ID + "=" + uri.getLastPathSegment();
             Cursor cursor = getContentResolver().query(uri,
@@ -114,15 +115,20 @@ public class MovieEditorActivity extends ActionBarActivity
             oldText = cursor.getString(cursor.getColumnIndex(Note.NOTE_DESCRIPTION));
             oldDate = cursor.getString(cursor.getColumnIndex(Note.NOTE_DATE));
             oldPlace = cursor.getString(cursor.getColumnIndex(Note.NOTE_PLACE));
-            oldMovieName = cursor.getString(cursor.getColumnIndex(Note.NOTE_MOVIE_NAME));
+            oldAdditionalInfo = cursor.getString(cursor.getColumnIndex(Note.NOTE_ADDITIONAL_INFO));
             pinned = cursor.getInt(cursor.getColumnIndex(Note.NOTE_IN_FAVOURITE));
             priority = cursor.getInt(cursor.getColumnIndex(Note.NOTE_PRIORITY));
-            editorNoteText.setText(oldText);
+            editorNoteText.setText(oldAdditionalInfo);
             editorNoteName.setText(oldName);
             editorNoteDate.setText(oldDate);
             editorNotePlace.setText(oldPlace);
-            editorNoteMovieName.setText(oldMovieName);
-            spinner.setSelection(priority-1);
+            editorNoteMovieName.setText(oldText);
+            if(priority == 4) {
+                spinner.setSelection(priority-4);
+            }
+            else {
+                spinner.setSelection(priority);
+            }
         }
     }
 
@@ -240,7 +246,14 @@ public class MovieEditorActivity extends ActionBarActivity
         String newDate = editorNoteDate.getText().toString().trim();
         String newPlace = editorNotePlace.getText().toString().trim();
         String newMovieName = editorNoteMovieName.getText().toString().trim();
-        int newPriority = spinnerPosition;
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         switch (action) {
             case Intent.ACTION_INSERT:
@@ -254,7 +267,7 @@ public class MovieEditorActivity extends ActionBarActivity
                 if (newText.length() == 0 && newName.length() == 0 && newMovieName.length() == 0 && newPlace.length() == 0) {
                     deleteNote();
                 } else if (oldText.equals(newText) && oldName.equals(newName) && oldDate.equals(newDate) && priority == newPriority
-                        && oldPlace.equals(newPlace) && oldMovieName.equals(newMovieName)) {
+                        && oldPlace.equals(newPlace) && oldAdditionalInfo.equals(newMovieName)) {
                     setResult(RESULT_CANCELED);
                 } else {
                     updateNote(newName, newText, newDate, newPriority, newPlace, newMovieName);
@@ -271,8 +284,14 @@ public class MovieEditorActivity extends ActionBarActivity
         String newDate = editorNoteDate.getText().toString().trim();
         String newPlace = editorNotePlace.getText().toString().trim();
         String newMovieName = editorNoteMovieName.getText().toString().trim();
-
-        int newPriority = spinnerPosition;
+        int newPriority;
+        if(spinnerPosition == 0)
+        {
+            newPriority = spinnerPosition + 4;
+        }
+        else {
+            newPriority = spinnerPosition;
+        }
 
         ContentValues values = new ContentValues();
         values.put(Note.NOTE_NAME, newName);
@@ -280,7 +299,7 @@ public class MovieEditorActivity extends ActionBarActivity
         values.put(Note.NOTE_DATE, newDate);
         values.put(Note.NOTE_PRIORITY, newPriority);
         values.put(Note.NOTE_PLACE, newPlace);
-        values.put(Note.NOTE_MOVIE_NAME, newMovieName);
+        values.put(Note.NOTE_ADDITIONAL_INFO, newMovieName);
         values.put(Note.NOTE_CATEGORY, "Movies");
 
         if(pinned==1)
@@ -304,11 +323,11 @@ public class MovieEditorActivity extends ActionBarActivity
     private void updateNote(String noteName, String noteText, String noteDate, int notePriority, String notePlace, String noteMovieName) {
         ContentValues values = new ContentValues();
         values.put(Note.NOTE_NAME, noteName);
-        values.put(Note.NOTE_DESCRIPTION, noteText);
+        values.put(Note.NOTE_DESCRIPTION, noteMovieName);
         values.put(Note.NOTE_DATE, noteDate);
         values.put(Note.NOTE_PRIORITY, notePriority);
         values.put(Note.NOTE_PLACE, notePlace);
-        values.put(Note.NOTE_MOVIE_NAME, noteMovieName);
+        values.put(Note.NOTE_ADDITIONAL_INFO, noteText);
         values.put(Note.NOTE_CATEGORY, "Movies");
         getContentResolver().update(NotesProvider.CONTENT_URI, values, noteFilter, null);
         Toast.makeText(this, getString(R.string.note_updated), Toast.LENGTH_SHORT).show();
@@ -318,13 +337,13 @@ public class MovieEditorActivity extends ActionBarActivity
     private void insertNote(String noteName, String noteText, String noteDate, int notePriority, String notePlace, String noteMovieName) {
         Note note = new Note();
         note.noteNAME = noteName;
-        note.noteDESCRIPTION = noteText;
+        note.noteDESCRIPTION = noteMovieName;
         note.noteDate = noteDate;
         note.notePriority = notePriority;
         note.notePlace = notePlace;
-        note.noteMovieName = noteMovieName;
+        note.noteAdditionalInfo = noteText;
         note.noteCategory = "Movies";
-        note.NotePassword = "";
+        note.notePassword = "";
         notesRepo.insert(note);
         setResult(RESULT_OK);
     }
